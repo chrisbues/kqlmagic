@@ -71,7 +71,6 @@ let zAppleHWVersions = datatable (HWVersion:string, Model:string, EOL:bool)
 let zAADLogs = SigninLogs 
 | where TimeGenerated >= ago(timeSpan)
   and ClientAppUsed contains "Other clients" // Only get legacy auth
-  and UserPrincipalName !contains "ciscouc" // filter out the uc servers
 | order by TimeGenerated desc // order
 // select columns to project/rename
 | project AADTimeKey = todatetime(bin(TimeGenerated, lookupBin)) // bin the datetime
@@ -135,10 +134,10 @@ let iEXOLogs = OfficeActivity
       and ClientInfoString !contains "/ecp/" // modern auth
     | order by TimeGenerated 
     | parse ClientInfoString with "Client=" EXOClient "; " EXODevice "/" EXOVersion // Split this string on ; and /
+    // need to spend some more time fixing these 
     //| extend EXOClient = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",1,ClientInfoString)
     //| extend EXODevice = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",2,ClientInfoString)
     //| extend EXOVersion = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",3,ClientInfoString)
-    // Need to rework these  
     | project UserPrincipalName = UserId // normalize UPN column
      , EXOClientInfoString = ClientInfoString
      , EXOClient
@@ -237,8 +236,6 @@ zAADLogs
     //$left.AAD_Program == $right.EXO_Program,
     //$left.AAD_ProgramVersion == $right.EXO_ProgramVersion
 | project-away EXOTimeKey, IPAddress1, AADAppDisplayName, AADClientAppUsed, EXOClientInfoString, UserPrincipalName1, AADOperatingSystem, AADBrowser, EXOClient, EXOVersion, EXODevice
-// more if you're trying to do a distinct
-//| project-away CorrelationId, IPAddress
 | extend Protocol = iff(EXO_Protocol != "",EXO_Protocol, AAD_Protocol)
 | extend OS = iff(EXO_OS != "",EXO_OS, AAD_OS)
 | extend OSVersion = iff(EXO_OSVersion != "",EXO_OSVersion, AAD_OSVersion)
