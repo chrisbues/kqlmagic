@@ -4,244 +4,312 @@ let lookupBin = 60s; // bin size
 
 // Apple HW Table used to map internal HW identifiers to public names
 let zAppleHWVersions = datatable (HWVersion:string, Model:string, EOL:bool)
-["Apple-iPod2C1","iPod Touch 2",true,
-"Apple-iPod3C1","iPod Touch 3",true,
-"Apple-iPod4C1","iPod Touch 4",true,
-"Apple-iPod5C1","iPod Touch 5",false,
-"Apple-iPad1C1","iPad",true,
-"Apple-iPad2C1","iPad 2 WIFI",true,
-"Apple-iPad2C2","iPad 2 WIFI + 3G",true,
-"Apple-iPad2C3","iPad 2 WIFI + 3G CDMA",true,
-"Apple-iPad2C4","iPad Mini - WIFI",bool(null),
-"Apple-iPad2C5","iPad Mini - WIFI + LTE",bool(null),
-"Apple-iPad3C1","The New iPad (iPad 3)- WIFI",bool(null),
-"Apple-iPad3C2","The New iPad (iPad 3) - WIFI + LTE",bool(null),
-"Apple-iPad3C3","iPad with Retina Display (iPad 4) - WIFI",bool(null),
-"Apple-iPad3C4","iPad with Retina Display (iPad 4) - WIFI + LTE",bool(null),
-"Apple-iPad4C1","iPad Air - WIFI",bool(null),
-"Apple-iPad4C2","iPad Air - WIFI + LTE",bool(null),
-"Apple-iPad4C4","iPad Mini with Retina Display - WIFI",bool(null),
-"Apple-iPad4C5","iPad Mini with Retina Display - WIFI + LTE",bool(null),
-"Apple-iPad5C1","iPad Mini 4 - WIFI",bool(null),
-"Apple-iPad5C2","iPad Mini 4 - WIFI + LTE",bool(null),
-"Apple-iPad5C3","iPad Air 2 - WIFI",bool(null),
-"Apple-iPad5C4","iPad Air 2 - WIFI + LTE",bool(null),
-"Apple-iPad6C3","iPad Pro (9.7\") - WIFI",bool(null),
-"Apple-iPad6C4","iPad Pro (9.7\") - WIFI + LTE",bool(null),
-"Apple-iPad6C7","iPad Pro (12.9\") - WIFI",bool(null),
-"Apple-iPad6C8","iPad Pro (12.9\") - WIFI + LTE",bool(null),
-"Apple-iPad6C12","iPad (9.7\") 2017 - WIFI",bool(null),
-"Apple-iPad7C1","iPad Pro (12.9\") WIFI 2nd Gen",bool(null),
-"Apple-iPad7C2","iPad Pro (12.9\") WIFI + LTE 2nd Gen",bool(null),
-"Apple-iPad7C3","iPad Pro (10.5\") WIFI 2nd Gen",bool(null),
-"Apple-iPad7C4","iPad Pro (10.5\") WIFI + LTE 2nd Gen",bool(null),
-"Apple-iPhone1C2","iPhone 3G",true,
-"Apple-iPhone2C1","iPhone 3GS",true,
-"Apple-iPhone3C1","iPhone 4 GSM",true,
-"Apple-iPhone3C2","iPhone4 GSM",true,
-"Apple-iPhone3C3","iPhone 4 CDMA",true,
-"Apple-iPhone4C1","iPhone 4S",true,
-"Apple-iPhone5C1","iPhone 5 GSM/LTE",true,
-"Apple-iPhone5C2","iPhone 5 CDMA USA/China",true,
-"Apple-iPhone5C3","iPhone 5C GSM/CDMA/Americas",true,
-"Apple-iPhone5C4","iPhone 5C Europe/Asia",true,
-"Apple-iPhone6C1","iPhone 5S GSM/CDMA/Americas",false,
-"Apple-iPhone6C2 ","iPhone 5S Europe/Asia",false,
-"Apple-iPhone7C1","iPhone 6 Plus",false,
-"Apple-iPhone7C2","iPhone 6",false,
-"Apple-iPhone8C1","iPhone 6S",false,
-"Apple-iPhone8C2","iPhone 6S Plus",false,
-"Apple-iPhone8C4","iPhone SE",false,
-"Apple-iPhone9C1","iPhone 7",false,
-"Apple-iPhone9C2","iPhone 7 Plus",false,
-"Apple-iPhone9C3","iPhone 7",false,
-"Apple-iPhone9C4","iPhone 7 Plus",false,
-"Apple-iPhone10C1","iPhone 8",false,
-"Apple-iPhone10C2","iPhone 8 Plus",false,
-"Apple-iPhone10C3","iPhone X",false,
-"Apple-iPhone10C4","iPhone 8",false,
-"Apple-iPhone10C5","iPhone 8 Plus",false,
-"Apple-iPhone10C6","iPhone X",false,
-"Apple-iPhone11C2","iPhone XS",false,
-"Apple-iPhone11C6","iPhone XS Max",false,
-"Apple-iphone11C8","iPhone XR",false,];
+['Apple-iPod2C1','iPod Touch 2',true,
+'Apple-iPod3C1','iPod Touch 3',true,
+'Apple-iPod4C1','iPod Touch 4',true,
+'Apple-iPod5C1','iPod Touch 5',false,
+'Apple-iPad1C1','iPad',true,
+'Apple-iPad2C1','iPad 2 WIFI',true,
+'Apple-iPad2C2','iPad 2 WIFI + 3G',true,
+'Apple-iPad2C3','iPad 2 WIFI + 3G CDMA',true,
+'Apple-iPad2C4','iPad Mini - WIFI',true,
+'Apple-iPad2C5','iPad Mini - WIFI + LTE',true,
+'Apple-iPad3C1','The New iPad (iPad 3)- WIFI',true,
+'Apple-iPad3C2','The New iPad (iPad 3) - WIFI + LTE',true,
+'Apple-iPad3C3','iPad with Retina Display (iPad 4) - WIFI',true,
+'Apple-iPad3C4','iPad with Retina Display (iPad 4) - WIFI + LTE',true,
+'Apple-iPad3C5','iPad (4th Gen, GSM, NA LTE)',true,
+'Apple-iPad3C6','iPad (4th Gen, CDMA, LTE)', true,
+'Apple-iPad4C1','iPad Air - WIFI',true,
+'Apple-iPad4C2','iPad Air - WIFI + LTE',true,
+'Apple-iPad4C4','iPad Mini with Retina Display - WIFI',true,
+'Apple-iPad4C5','iPad Mini with Retina Display - WIFI + LTE',true,
+'Apple-iPad5C1','iPad Mini 4 - WIFI',false,
+'Apple-iPad5C2','iPad Mini 4 - WIFI + LTE',false,
+'Apple-iPad5C3','iPad Air 2 - WIFI',false,
+'Apple-iPad5C4','iPad Air 2 - WIFI + LTE',false,
+'Apple-iPad6C3','iPad Pro (9.7") - WIFI',false,
+'Apple-iPad6C4','iPad Pro (9.7") - WIFI + LTE',false,
+'Apple-iPad6C7','iPad Pro (12.9") - WIFI',false,
+'Apple-iPad6C8','iPad Pro (12.9") - WIFI + LTE',false,
+'Apple-iPad6C12','iPad (9.7") 2017 - WIFI',false,
+'Apple-iPad7C1','iPad Pro (12.9") WIFI 2nd Gen',false,
+'Apple-iPad7C2','iPad Pro (12.9") WIFI + LTE 2nd Gen',false,
+'Apple-iPad7C3','iPad Pro (10.5") WIFI 2nd Gen',false,
+'Apple-iPad7C4','iPad Pro (10.5") WIFI + LTE 2nd Gen',false,
+'Apple-iPad7C6','iPad 6th Gen',false,
+'Apple-iPad7C11','iPad (10.2") 7th Gen WIFI',false,
+'Apple-iPad7C12','iPad (10.2") 7th Gen WIFI+LTE',false,
+'Apple-iPad8C1','iPad Pro (11")',false,
+'Apple-iPad8C2','iPad Pro (11")',false,
+'Apple-iPad8C3','iPad Pro (11")',false,
+'Apple-iPad8C4','iPad Pro (11")',false,
+'Apple-iPad8C5','iPad Pro (12.9") 3rd gen',false,
+'Apple-iPad8C6','iPad Pro (12.9") 3rd gen',false,
+'Apple-iPad8C7','iPad Pro (12.9") 3rd gen',false,
+'Apple-iPad8C8','iPad Pro (12.9") 3rd gen',false,
+'Apple-iPad8C11','iPad Pro- Wi-Fi 12.9", 4th gen',false,
+'Apple-iPad8C12','iPad Pro - Wi-Fi + Cellular 12.9", 4th Gen',false,
+'Apple-iPad11C1','iPad Mini 5',false,
+'Apple-iPad11C2','iPad Mini 5',false,
+'Apple-iPad11C3','iPad Air 3rd gen',false,
+'Apple-iPad11C4','iPad Air 3rd gen',false,
+'Apple-iPad11C7','iPad - WIFI+LTE 10.2", 8th Gen',false,
+'Apple-iPhone1C2','iPhone 3G',true,
+'Apple-iPhone2C1','iPhone 3GS',true,
+'Apple-iPhone3C1','iPhone 4 GSM',true,
+'Apple-iPhone3C2','iPhone4 GSM',true,
+'Apple-iPhone3C3','iPhone 4 CDMA',true,
+'Apple-iPhone4C1','iPhone 4S',true,
+'Apple-iPhone5C1','iPhone 5 GSM/LTE',true,
+'Apple-iPhone5C2','iPhone 5 CDMA USA/China',true,
+'Apple-iPhone5C3','iPhone 5C GSM/CDMA/Americas',true,
+'Apple-iPhone5C4','iPhone 5C Europe/Asia',true,
+'Apple-iPhone6C1','iPhone 5S GSM/CDMA/Americas',true,
+'Apple-iPhone6C2','iPhone 5S Europe/Asia',true,
+'Apple-iPhone7C1','iPhone 6 Plus',true,
+'Apple-iPhone7C2','iPhone 6',true,
+'Apple-iPhone8C1','iPhone 6S',false,
+'Apple-iPhone8C2','iPhone 6S Plus',false,
+'Apple-iPhone8C4','iPhone SE',false,
+'Apple-iPhone9C1','iPhone 7',false,
+'Apple-iPhone9C2','iPhone 7 Plus',false,
+'Apple-iPhone9C3','iPhone 7',false,
+'Apple-iPhone9C4','iPhone 7 Plus',false,
+'Apple-iPhone10C1','iPhone 8',false,
+'Apple-iPhone10C2','iPhone 8 Plus',false,
+'Apple-iPhone10C3','iPhone X',false,
+'Apple-iPhone10C4','iPhone 8',false,
+'Apple-iPhone10C5','iPhone 8 Plus',false,
+'Apple-iPhone10C6','iPhone X',false,
+'Apple-iPhone11C2','iPhone XS',false,
+'Apple-iPhone11C6','iPhone XS Max',false,
+'Apple-iPhone11C8','iPhone XR',false,
+'Apple-iPhone12C1','iPhone 11',false,
+'Apple-iPhone12C3','iPhone 11 Pro',false,
+'Apple-iPhone12C5','iPhone 11 Pro Max',false,
+'Apple-iPhone12C8','iPhone SE (Second Generation)',false,
+'Apple-iPhone13C1','iPhone 12',false,
+'Apple-iPhone13C2','iPhone 12 Mini',false,
+'Apple-iPhone13C3','iPhone 12 Pro',false,
+'Apple-iPhone13C4','iPhone 12 Pro Max',false
+'Apple-iPhone14C4','iPhone 13 Mini',false,
+'Apple-iPhone14C5','iPhone 13',false,
+'Apple-iPhone14C2','iPhone 13 Pro',false,
+'Apple-iPhone14C3','iPhone 13 Pro Max',false
+];
 
-// AAD Logs
-//let zAADLogs = workspace("auth-prod-logs").SigninLogs 
-let zAADLogs = SigninLogs 
-| where TimeGenerated >= ago(timeSpan)
-  and ClientAppUsed contains "Other clients" // Only get legacy auth
-| order by TimeGenerated desc // order
-// select columns to project/rename
-| project AADTimeKey = todatetime(bin(TimeGenerated, lookupBin)) // bin the datetime
- , UserPrincipalName
- , CorrelationId
- , AADAppDisplayName = AppDisplayName
- , AADClientAppUsed = ClientAppUsed
- , AADOperatingSystem = tostring(parse_json(DeviceDetail).operatingSystem) // tostring is needed to use these in queries, otherwise they're type dynamic
- , AADBrowser = tostring(parse_json(DeviceDetail).browser)
- , IPAddress
-// Protocol Column
+let zAADLogs = SigninLogs
+    | where TimeGenerated >= ago(timeSpan)
+//    | where AppDisplayName in ('*') or '*' in ('*')
+//    | where UserDisplayName in ('*') or '*' in ('*')
+    | extend ErrorCode = toint(Status.errorCode)
+    | extend SigninStatus = case(ErrorCode == 0, "Success",
+        ErrorCode == 50058, "Interrupt",
+        ErrorCode == 50140, "Interrupt",
+        ErrorCode == 51006, "Interrupt",
+        ErrorCode == 50059, "Interrupt",
+        ErrorCode == 65001, "Interrupt",
+        ErrorCode == 52004, "Interrupt",
+        ErrorCode == 50055, "Interrupt",
+        ErrorCode == 50144, "Interrupt",
+        ErrorCode == 50072, "Interrupt",
+        ErrorCode == 50074, "Interrupt",
+        ErrorCode == 16000, "Interrupt",
+        ErrorCode == 16001, "Interrupt",
+        ErrorCode == 16003, "Interrupt",
+        ErrorCode == 50127, "Interrupt",
+        ErrorCode == 50125, "Interrupt",
+        ErrorCode == 50129, "Interrupt",
+        ErrorCode == 50143, "Interrupt",
+        ErrorCode == 81010, "Interrupt",
+        ErrorCode == 81014, "Interrupt",
+        ErrorCode == 81012, "Interrupt",
+        "Failure") 
+//    | where SigninStatus == '*' or '*' == '*' or '*' == 'All Sign-ins'
+    | extend AAD_TimeKey = todatetime(bin(TimeGenerated, lookupBin)) // bin the datetime
+    | extend AAD_AppDisplayName = AppDisplayName
+    | extend AAD_ClientAppUsed = iff(isempty(ClientAppUsed) == true, "Unknown", ClientAppUsed)
+    | extend isLegacyAuth = case(ClientAppUsed has "Browser", "No", ClientAppUsed has "Mobile Apps and Desktop clients", "No", ClientAppUsed has "Exchange ActiveSync", "Yes", ClientAppUsed has "Unknown", "Unknown", "Yes")
+    | extend AAD_OperatingSystem = tostring(DeviceDetail.operatingSystem)
+    | extend AAD_Browser = tostring(DeviceDetail.browser)
+    | extend AAD_OSVersion = case(AAD_OperatingSystem has "Windows", (split(AAD_OperatingSystem, " ", 1)).[0], "")
+    | extend UserPrincipalName
+    | extend CorrelationId
+    | extend IPAddress
+    | extend ConditionalAccessStatus
+    // Protocol Column
 | extend AAD_Protocol = case(
-    AADClientAppUsed contains "Mapi", "MAPI",
-    AADClientAppUsed contains "IMAP", "IMAP",
+    AAD_ClientAppUsed has "Mapi", "MAPI",
+    AAD_ClientAppUsed has "IMAP", "IMAP",
     "")
 // OS Column 
 | extend AAD_OS = case(
-    AADOperatingSystem contains "Android", "Android",
-    AADOperatingSystem contains "Ios", "iOS",
-    AADOperatingSystem contains "MacOs","MacOS",
-    AADOperatingSystem contains "Windows", "Windows",
+    AAD_OperatingSystem has "Android", "Android",
+    AAD_OperatingSystem has "Ios", "iOS",
+    AAD_OperatingSystem has "MacOs","MacOS",
+    AAD_OperatingSystem has "Windows", "Windows",
     "")
 // OS Version
-| extend AAD_OSVersion = case(AAD_OS contains "Windows", (split(AADOperatingSystem," ",1)).[0], // windows in the aad logs identifies as its external version number
+| extend AAD_OSVersion = case(AAD_OS has "Windows", (split(AAD_OperatingSystem," ",1)).[0], // windows in the aad logs identifies as its external version number
     "")
 // Program Column
 | extend AAD_Program = case(
-    AADBrowser contains "Microsoft Office", "WinOffice",
-    AADBrowser contains "MacOutlook", "MacOffice",
-    AADBrowser has_any("powerpnt","outlook.exe", "winword","excel","mspub","msaccess","visio","winproj"), "WinOffice", // these occasionally show up
-    AADBrowser contains "python", "Python",
-    AADClientAppUsed contains "IMAP", "IMAP",
+    AAD_Browser has "Microsoft Office", "WinOffice",
+    AAD_Browser has "MacOutlook", "MacOffice",
+    AAD_Browser has_any("powerpnt","outlook.exe", "winword","excel","mspub","msaccess","visio","winproj"), "WinOffice", // these occasionally show up
+    AAD_Browser has "python", "Python",
+    AAD_ClientAppUsed has "IMAP", "IMAP",
     "")
 // Program Versions
 | extend AAD_ProgramVersion = case(
     // Office on Windows identifies as its internal version number
-    AAD_Program == "WinOffice" and AADBrowser contains "Microsoft Office", case(
-        (split(AADBrowser," ",2)).[0] == "16.0","2016+",
-        (split(AADBrowser," ",2)).[0] == "15.0","2013",
-        (split(AADBrowser," ",2)).[0] == "14.0","2010",
-        (split(AADBrowser," ",2)).[0] == "12.0","2007",
-        (split(AADBrowser," ",2)).[0] == "11.0","2003",
+    AAD_Program == "WinOffice" and AAD_Browser has "Microsoft Office", case(
+        (split(AAD_Browser," ",2)).[0] == "16.0","2016+",
+        (split(AAD_Browser," ",2)).[0] == "15.0","2013",
+        (split(AAD_Browser," ",2)).[0] == "14.0","2010",
+        (split(AAD_Browser," ",2)).[0] == "12.0","2007",
+        (split(AAD_Browser," ",2)).[0] == "11.0","2003",
         ""),
     // Office on Mac identifies as its internal version number
-    AAD_Program == "MacOffice" and AADBrowser contains "MacOutlook", case(
-        (split(AADBrowser," ",1)).[0] startswith "16","2019",
-        (split(AADBrowser," ",1)).[0] startswith "15","2016",
-        (split(AADBrowser," ",1)).[0] startswith "14","2011",
-        (split(AADBrowser," ",1)).[0] startswith "12","2008",
-        (split(AADBrowser," ",1)).[0] startswith "11","2004",
+    AAD_Program == "MacOffice" and AAD_Browser has "MacOutlook", case(
+        (split(AAD_Browser," ",1)).[0] startswith "16","2019",
+        (split(AAD_Browser," ",1)).[0] startswith "15","2016",
+        (split(AAD_Browser," ",1)).[0] startswith "14","2011",
+        (split(AAD_Browser," ",1)).[0] startswith "12","2008",
+        (split(AAD_Browser," ",1)).[0] startswith "11","2004",
         ""),
         "")
-; 
-
+    | project TimeGenerated, ErrorCode, SigninStatus, AAD_TimeKey, AAD_AppDisplayName, AAD_ClientAppUsed, isLegacyAuth, AAD_OS, AAD_Browser, AAD_OSVersion, AAD_Program, AAD_ProgramVersion, AAD_Protocol, UserPrincipalName, CorrelationId, IPAddress, ConditionalAccessStatus
+    | where SigninStatus == 'Success' and ConditionalAccessStatus == 'success' and isLegacyAuth == 'Yes'
+    | order by TimeGenerated desc
+;
+// EXO Logs
 // EXO Logs
 let iEXOLogs = OfficeActivity
-    | where Operation == "MailboxLogin"
-      and TimeGenerated >= ago(timeSpan)
-      and ClientInfoString !contains "/owa/" // modern auth
-      and ClientInfoString !contains "/mail/" // modern auth
-      and ClientInfoString !contains "/ecp/" // modern auth
-    | order by TimeGenerated 
-    | parse ClientInfoString with "Client=" EXOClient "; " EXODevice "/" EXOVersion // Split this string on ; and /
-    // need to spend some more time fixing these 
-    //| extend EXOClient = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",1,ClientInfoString)
-    //| extend EXODevice = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",2,ClientInfoString)
-    //| extend EXOVersion = extract("^Client=([\\w\\./]*);\\s?([\\w\\d\\s-\\.=]+)/?(.*)$",3,ClientInfoString)
+    | where Operation == "MailboxLogin" //and ClientInfoString == 'Client=POP3/IMAP4;Protocol=IMAP4'
+    and TimeGenerated >= ago(timeSpan)
+      and ClientInfoString !has "/owa/" // modern auth
+      and ClientInfoString !has "/mail/" // modern auth
+      and ClientInfoString !has "/ecp/" // modern auth
+      and ClientInfoString !has "Microsoft BITS" // not needed, as we have better converage from the winoffice calculation
+    | order by TimeGenerated
+    | extend EXO_BasicAuth = iff(ClientInfoString has 'Client=BasicAuth', true, false)
+    //| extend EXO_ClientInfoString = iff(ClientInfoString has 'Client=BasicAuth', replace_string(ClientInfoString,'BasicAuth; ',''), ClientInfoString)
+    | extend EXO_ClientInfoString = iff(ClientInfoString has 'Client=POP3/IMAP4;Protocol=IMAP4', 'Client=IMAP4; / ', iff(ClientInfoString has 'Client=POP3/IMAP4;Protocol=POP3', 'Client=POP3; / ', ClientInfoString))
+    | extend EXO_ClientInfoString = replace_string(EXO_ClientInfoString,'BasicAuth; ','' )
+    | parse EXO_ClientInfoString with "Client=" EXO_Client "; " EXO_Device "/" EXO_Version // Split this string on ; and /
     | project UserPrincipalName = UserId // normalize UPN column
-     , EXOClientInfoString = ClientInfoString
-     , EXOClient
-     , EXODevice = translate("_", " ",(translate("+"," ", EXODevice))) // get rid of + and _ in fields in Mac OS entries
-     , EXOVersion
-     , IPAddress = ClientIP
-     , EXOTimeKey = todatetime(bin(TimeGenerated, lookupBin)) // bin the datetime
-     | where EXODevice != "Microsoft BITS" // not needed, as we have better converage from the winoffice calculation
-     | extend EXO_Protocol = case(
-        EXOClient == "Microsoft.Exchange.ActiveSync", "ActiveSync",
-        EXOClient == "Microsoft.Exchange.WebServices", "WebServices",
-        EXOClient == "Microsoft.Exchange.Mapi", "MAPI",
-        EXOClient == "Microsoft.Exchange.Autodiscover", "Autodiscover",
-        EXOClient == "Microsoft.Exchange.OfflineAddressBook	", "OfflineAddressBook",
+    , ClientInfoString
+    , EXO_ClientInfoString
+    , EXO_Client
+    , EXO_Device = translate("_", " ",(translate("+"," ", EXO_Device))) // get rid of + and _ in fields in Mac OS entries
+    , EXO_Version
+    , IPAddress = ClientIP
+    , EXOTimeKey = todatetime(bin(TimeGenerated, lookupBin)) // bin the datetime
+    , EXO_BasicAuth
+    | extend EXO_Protocol = case(
+        EXO_Client == "Microsoft.Exchange.ActiveSync", "ActiveSync",
+        EXO_Client == "Microsoft.Exchange.WebServices", "WebServices",
+        EXO_Client == "Microsoft.Exchange.Mapi", "MAPI",
+        EXO_Client == "Microsoft.Exchange.Autodiscover", "Autodiscover",
+        EXO_Client == "Microsoft.Exchange.OfflineAddressBook", "OfflineAddressBook",
+        EXO_Client == 'IMAP4', 'IMAP4',
+        EXO_Client == 'POP3', 'POP3',
      "") // extend EXO_Protocol
      // OS Column
-     | extend EXO_OS = case(
-        EXODevice has_any("Mac OS X","MacOutlook"), "MacOS",
-        EXODevice contains "Apple-i", "iOS",
-        EXOVersion contains "Windows", "Windows",
-        EXODevice has_any("Android","SAMSUNG"), "Android",
-        EXODevice startswith "LG", "Android",
+    | extend EXO_OS = case(
+        EXO_Device has_any("Mac OS X","MacOutlook"), "MacOS",
+        EXO_Device has "Apple", "iOS",
+        EXO_Version has "Windows", "Windows",
+        EXO_Device has_any("Android","SAMSUNG"), "Android",
+        EXO_Device startswith "LG", "Android",
+        EXO_Device startswith "motorola", "Android",
+        EXO_Device startswith "Android", "Android",
     "") // extend EXO_OS
    // OS Version Column
    | extend EXO_OSVersion = case(
-        EXO_OS == "MacOS" and EXODevice == "MacOutlook", extract("Mac OS X (?:Version )?(10.[\\d]{1,2})",1,EXOVersion), // old regex to match the entire x.x.x version number: Mac OS X (?:Version )?([\\d.]*)
-        EXO_OS == "MacOS" and EXODevice == "Mac OS X", extract("^(10.[\\d]{1,2})",1,EXOVersion), // old regex to match the entire x.x.x version number: ^([\\d.]*)
+        EXO_OS == "MacOS" and EXO_Device == "MacOutlook", extract("Mac OS X (?:Version )?(10.[\\d]{1,2})",1,EXO_Version), // old regex to match the entire x.x.x version number: Mac OS X (?:Version )?([\\d.]*)
+        EXO_OS == "MacOS" and EXO_Device == "Mac OS X", extract("^(10.[\\d]{1,2})",1,EXO_Version), // old regex to match the entire x.x.x version number: ^([\\d.]*)
         EXO_OS == "iOS", case(
-            EXOVersion startswith "9", "5", // iOS identifies as its internal build numbers. taking just the first couple of digits here
-            EXOVersion startswith "10", "6",
-            EXOVersion startswith "11", "7",
-            EXOVersion startswith "12", "8",
-            EXOVersion startswith "13", "9",
-            EXOVersion startswith "14", "10",
-            EXOVersion startswith "15", "11",
-            EXOVersion startswith "16", "12",
-            EXOVersion startswith "17", "13",
+            EXO_Version startswith "9", "5", // iOS identifies as its internal build numbers. taking just the first couple of digits here
+            EXO_Version startswith "10", "6",
+            EXO_Version startswith "11", "7",
+            EXO_Version startswith "12", "8",
+            EXO_Version startswith "13", "9",
+            EXO_Version startswith "14", "10",
+            EXO_Version startswith "15", "11",
+            EXO_Version startswith "16", "12",
+            EXO_Version startswith "17", "13",
+            EXO_Version startswith "18", "14",
+            EXO_Version startswith "19", "15",
             ""),
         EXO_OS == "Windows", case(
-            EXODevice == "Microsoft Office", case( // Only know Windows version if the client is Office
-                EXOVersion contains "Windows NT 10", "10", // Windows identifies as its internal build numbers
-                EXOVersion contains "Windows NT 6.3", "8.1",
-                EXOVersion contains "Windows NT 6.2", "8",
-                EXOVersion contains "Windows NT 6.1", "7",
-                EXOVersion contains "Windows NT 6.0", "Vista",
-                EXOVersion contains "Windows NT 5.1", "XP", ""), // EXODevice == "Microsoft Office"
+            EXO_Device == "Microsoft Office", case( // Only know Windows version if the client is Office
+                EXO_Version has "Windows NT 10", "10", // Windows identifies as its internal build numbers
+                EXO_Version has "Windows NT 6.3", "8.1",
+                EXO_Version has "Windows NT 6.2", "8",
+                EXO_Version has "Windows NT 6.1", "7",
+                EXO_Version has "Windows NT 6.0", "Vista",
+                EXO_Version has "Windows NT 5.1", "XP", ""), // EXO_Device == "Microsoft Office"
             ""), // EXO_OS == "Windows"
+        EXO_OS == "Android", extract("Android ([\\d.]+);",1,EXO_Device),
         "") //extend EXO_OSVersion
     // Program Column
     | extend EXO_Program = case(
-        EXODevice == "MacOutlook", "MacOffice",
-        EXODevice == "Microsoft Office", "WinOffice",
-        EXODevice == "Mac OS X" and EXOVersion contains "Calendar", "MacOS Calendar",
-        EXODevice == "Mac OS X" and EXOVersion contains "Mail", "MacOS Mail",
-        EXODevice == "Mac OS X" and EXOVersion contains "AddressBook", "MacOS AddressBook",
-        EXODevice == "Mac OS X" and EXOVersion contains "Notes", "MacOS Notes",
-        EXODevice contains "python", "Python",
-        EXODevice contains "zoomrooms", "Zoom Rooms",
-        EXOClientInfoString contains "IMAP", "IMAP",
+        EXO_Device == "MacOutlook", "MacOffice",
+        EXO_Device == "Microsoft Office", "WinOffice",
+        EXO_Device == "Mac OS X" and EXO_Version has "Calendar", "MacOS Calendar",
+        EXO_Device == "Mac OS X" and EXO_Version has "Mail", "MacOS Mail",
+        EXO_Device == "Mac OS X" and EXO_Version has "AddressBook", "MacOS AddressBook",
+        EXO_Device == "Mac OS X" and EXO_Version has "Notes", "MacOS Notes",
+        EXO_Device has "python", "Python",
+        EXO_Device has "zoomrooms", "Zoom Rooms",
+        EXO_ClientInfoString has "IMAP", "IMAP",
         ""
     ) // extend EXO_Program
-    
     | extend EXO_ProgramVersion = case (
-        EXODevice == "Microsoft Office" and EXO_OS == "Windows", case(
-            EXOVersion startswith "16.0", "2016+",
-            EXOVersion startswith "15.0", "2013",
-            EXOVersion startswith "14.0", "2010",
-            EXOVersion startswith "12.0", "2007",
-            EXOVersion startswith "11.0", "2003",
-            ""), // EXODevice == "Microsoft Office" and EXO_OS == "Windows"
-        EXODevice == "MacOutlook", case(
-            EXOVersion startswith "16", "2019",
-            EXOVersion startswith "15", "2016",
-            EXOVersion startswith "14", "2011",
-            EXOVersion startswith "12", "2008",
-            EXOVersion startswith "11", "2004",
-            ""), // EXODevice == "MacOutlook"
+        EXO_Device == "Microsoft Office" and EXO_OS == "Windows", case(
+            EXO_Version startswith "16.0", "2016+",
+            EXO_Version startswith "15.0", "2013",
+            EXO_Version startswith "14.0", "2010",
+            EXO_Version startswith "12.0", "2007",
+            EXO_Version startswith "11.0", "2003",
+            ""), // EXO_Device == "Microsoft Office" and EXO_OS == "Windows"
+        EXO_Device == "MacOutlook", case(
+            EXO_Version startswith "16", "2019",
+            EXO_Version startswith "15", "2016",
+            EXO_Version startswith "14", "2011",
+            EXO_Version startswith "12", "2008",
+            EXO_Version startswith "11", "2004",
+            ""), // EXO_Device == "MacOutlook"
         "") // extend EXO_ProgramVersion
-; // Let 
+; // Let
+
 
 // Join the Apple HW Versions table
-let zEXOLogs = 
+let zEXOLogs =
 iEXOLogs
-| lookup zAppleHWVersions on $left.EXODevice == $right.HWVersion
-| project-rename EXO_AppleHWModel = Model, EXO_AppleHWEOL = EOL 
+| lookup zAppleHWVersions on $left.EXO_Device == $right.HWVersion
+| project-rename AppleHWModel = Model, AppleHWEOL = EOL 
 ;
 
 zAADLogs
-| join kind=leftouter zEXOLogs on 
+| join kind=leftouter zEXOLogs on
     UserPrincipalName,
     IPAddress,
-    $left.AADTimeKey == $right.EXOTimeKey, 
-    $left.AAD_OS == $right.EXO_OS//,
+    $left.AAD_TimeKey == $right.EXOTimeKey
+    //$left.AAD_OS == $right.EXO_OS//,
     // too restrictive (for now)
     //$left.AAD_OSVersion == $right.EXO_OSVersion,
     //$left.AAD_Program == $right.EXO_Program,
     //$left.AAD_ProgramVersion == $right.EXO_ProgramVersion
-| project-away EXOTimeKey, IPAddress1, AADAppDisplayName, AADClientAppUsed, EXOClientInfoString, UserPrincipalName1, AADOperatingSystem, AADBrowser, EXOClient, EXOVersion, EXODevice
+//| project-away EXOTimeKey, IPAddress1, AAD_AppDisplayName, AAD_ClientAppUsed, EXO_ClientInfoString, UserPrincipalName1, AAD_OS, AAD_Browser, EXO_Client, EXO_Version, EXO_Device
 | extend Protocol = iff(EXO_Protocol != "",EXO_Protocol, AAD_Protocol)
 | extend OS = iff(EXO_OS != "",EXO_OS, AAD_OS)
 | extend OSVersion = iff(EXO_OSVersion != "",EXO_OSVersion, AAD_OSVersion)
 | extend Program = iff(EXO_Program != "",EXO_Program, AAD_Program)
 | extend ProgramVersion = iff(EXO_ProgramVersion != "",EXO_ProgramVersion, AAD_ProgramVersion)
-| project-away EXO_Protocol, AAD_Protocol, EXO_OS, AAD_OS, EXO_OSVersion, AAD_OSVersion, EXO_Program, AAD_Program, EXO_ProgramVersion, AAD_ProgramVersion
-| project-away IPAddress, CorrelationId
-| summarize arg_max(AADTimeKey,*) by UserPrincipalName, Protocol, OS, OSVersion, Program, ProgramVersion
-| order by UserPrincipalName asc
+| project-away TimeGenerated, AAD_AppDisplayName, AAD_ClientAppUsed, AAD_OS, AAD_Browser, AAD_OSVersion, AAD_Program, AAD_ProgramVersion, AAD_Protocol, EXO_ClientInfoString, EXO_Client, EXO_Device, EXO_BasicAuth, EXO_Protocol, EXO_OS, EXO_OSVersion, EXO_Program, EXO_ProgramVersion, UserPrincipalName1, ClientInfoString, EXO_Version, IPAddress1, EXOTimeKey
+| project-rename TimeGenerated = AAD_TimeKey
+| summarize arg_max(TimeGenerated,*) by UserPrincipalName, Protocol, OS, OSVersion, Program, ProgramVersion, AppleHWModel
